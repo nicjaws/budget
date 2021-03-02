@@ -12,13 +12,18 @@ import EntryLines from './components/EntryLines';
 
 
 function App() {
-  const [entries, setsEntries] = useState(initialEntries);
+  const [entries, setEntries] = useState(initialEntries);
 
 function deleteEntry(id){
   const result = entries.filter(entry => entry.id !== id);
-  console.log('entries', entries)
+  setEntries(result);
+}
+
+function addEntry(description, value) {
+  const result = entries.concat({id: entries.lenght + 1, description, value});
   console.log('result', result);
-  setsEntries(result);
+  console.log('entries', entries);
+  setEntries(result);
 }
 
   return (
@@ -36,7 +41,7 @@ function deleteEntry(id){
 
       <MainHeader title="Add new transaction" type="h3" />
 
-      <NewEntryForm />
+      <NewEntryForm addEntry={addEntry} />
       
     </Container>
   );
