@@ -11,10 +11,16 @@ import EntryLines from './components/EntryLines';
 
 
 
-
-
 function App() {
   const [entries, setsEntries] = useState(initialEntries);
+
+function deleteEntry(id){
+  const result = entries.filter(entry => entry.id !== id);
+  console.log('entries', entries)
+  console.log('result', result);
+  setsEntries(result);
+}
+
   return (
     <Container>
 
@@ -26,7 +32,7 @@ function App() {
 
       <MainHeader title="History" type="h3" />
 
-      <EntryLines entries={entries}/>
+      <EntryLines entries={entries} deleteEntry={deleteEntry}/>
 
       <MainHeader title="Add new transaction" type="h3" />
 
